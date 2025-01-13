@@ -1,6 +1,6 @@
 package com.mikaelfrancoeur.confooexpress2025.person;
 
-public class LoudPerson extends person {
+public class LoudPerson extends Person {
 
     @Loud
     @Override

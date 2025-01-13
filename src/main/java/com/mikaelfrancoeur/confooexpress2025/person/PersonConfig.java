@@ -7,8 +7,8 @@ import org.springframework.context.annotation.Configuration;
 public class PersonConfig {
 
     @Bean
-    person person() {
-        return new person();
+    Person person() {
+        return new Person();
     }
 
     @Bean
