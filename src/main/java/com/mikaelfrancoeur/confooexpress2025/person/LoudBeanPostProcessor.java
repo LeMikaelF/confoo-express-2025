@@ -10,7 +10,12 @@ public class LoudBeanPostProcessor implements BeanPostProcessor {
     @Override
     public Object postProcessAfterInitialization(@NonNull Object bean, @NonNull String beanName) throws BeansException {
         if ("loudPerson".equals(beanName)) {
-            return new LoudPerson();
+            return new Person() {
+                @Override
+                public String greet() {
+                    return "BONJOUR!";
+                }
+            };
         }
         return bean;
     }
