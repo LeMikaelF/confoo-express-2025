@@ -12,7 +12,7 @@ public class PersonConfig {
     }
 
     @Bean
-    LoudPerson loudPerson() {
-        return new LoudPerson();
+    Person loudPerson() {
+        return new Person();
     }
 }
