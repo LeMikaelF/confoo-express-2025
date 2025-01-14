@@ -18,7 +18,7 @@ public class InjectionTest implements WithAssertions {
         private final String message = "allo!";
     }
 
-    @Setter
+    @Getter @Setter
     static class RequiresInjection {
         private InjectedBean injectedBean;
     }
@@ -38,8 +38,7 @@ public class InjectionTest implements WithAssertions {
 
         RequiresInjection bean = beanFactory.getBean("requiresInjection", RequiresInjection.class);
 
-        assertThat(bean)
-                .extracting("injectedBean.message")
+        assertThat(bean.getInjectedBean().getMessage())
                 .isEqualTo("allo!");
     }
 }
