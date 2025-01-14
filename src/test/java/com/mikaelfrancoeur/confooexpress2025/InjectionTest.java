@@ -7,19 +7,20 @@ import org.springframework.beans.factory.support.BeanDefinitionBuilder;
 import org.springframework.beans.factory.support.BeanDefinitionRegistry;
 import org.springframework.beans.factory.support.DefaultListableBeanFactory;
 
-@SuppressWarnings({ "LombokSetterMayBeUsed", "FieldCanBeLocal", "unused" })
+import lombok.Getter;
+import lombok.Setter;
+
+@SuppressWarnings({ "FieldCanBeLocal", "unused" })
 public class InjectionTest implements WithAssertions {
 
+    @Getter
     static class InjectedBean {
         private final String message = "allo!";
     }
 
+    @Setter
     static class RequiresInjection {
         private InjectedBean injectedBean;
-
-        public void setInjectedBean(InjectedBean injectedBean) {
-            this.injectedBean = injectedBean;
-        }
     }
 
     @Test
