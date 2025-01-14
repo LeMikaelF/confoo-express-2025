@@ -34,7 +34,9 @@ public class InjectionTest implements WithAssertions {
                         .addAutowiredProperty("injectedBean")
                         .getBeanDefinition());
 
-        assertThat(beanFactory.getBean("requiresInjection", RequiresInjection.class))
+        RequiresInjection bean = beanFactory.getBean("requiresInjection", RequiresInjection.class);
+
+        assertThat(bean)
                 .extracting("injectedBean.message")
                 .isEqualTo("allo!");
     }
