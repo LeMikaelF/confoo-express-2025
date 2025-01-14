@@ -4,9 +4,10 @@ import org.assertj.core.api.WithAssertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.BeanFactory;
 import org.springframework.beans.factory.support.BeanDefinitionBuilder;
+import org.springframework.beans.factory.support.BeanDefinitionRegistry;
 import org.springframework.beans.factory.support.DefaultListableBeanFactory;
 
-@SuppressWarnings({ "LombokSetterMayBeUsed", "FieldCanBeLocal", "unused", "CastCanBeRemovedNarrowingVariableType" })
+@SuppressWarnings({ "LombokSetterMayBeUsed", "FieldCanBeLocal", "unused" })
 public class InjectionTest implements WithAssertions {
 
     static class InjectedBean {
@@ -25,11 +26,11 @@ public class InjectionTest implements WithAssertions {
     void test() {
         BeanFactory beanFactory = new DefaultListableBeanFactory();
 
-        ((DefaultListableBeanFactory) beanFactory).registerBeanDefinition("injectedBean",
+        ((BeanDefinitionRegistry) beanFactory).registerBeanDefinition("injectedBean",
                 BeanDefinitionBuilder.genericBeanDefinition(InjectedBean.class)
                         .getBeanDefinition());
 
-        ((DefaultListableBeanFactory) beanFactory).registerBeanDefinition("requiresInjection",
+        ((BeanDefinitionRegistry) beanFactory).registerBeanDefinition("requiresInjection",
                 BeanDefinitionBuilder.genericBeanDefinition(RequiresInjection.class)
                         .addAutowiredProperty("injectedBean")
                         .getBeanDefinition());
