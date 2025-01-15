@@ -12,7 +12,7 @@ public class LoudBeanPostProcessor implements BeanPostProcessor {
 
     @Override
     public Object postProcessAfterInitialization(@NonNull Object bean, @NonNull String beanName) throws BeansException {
-        if ("loudPerson".equals(beanName) && bean instanceof Person person) {
+        if (beanName.startsWith("loud") && bean instanceof Person person) {
             return Enhancer.create(Person.class,
                     (MethodInterceptor) (obj, method, args, proxy) -> {
                         Object result = method.invoke(person, args);
