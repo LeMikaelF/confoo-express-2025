@@ -20,7 +20,7 @@ public class InjectionTest implements WithAssertions {
 
     @Getter @Setter
     static class RequiresInjection {
-        private InjectedBean injectedBean;
+        private InjectedBean injectedField;
     }
 
     @Test
@@ -33,12 +33,12 @@ public class InjectionTest implements WithAssertions {
 
         ((BeanDefinitionRegistry) beanFactory).registerBeanDefinition("requiresInjection",
                 BeanDefinitionBuilder.genericBeanDefinition(RequiresInjection.class)
-                        .addAutowiredProperty("injectedBean")
+                        .addAutowiredProperty("injectedField")
                         .getBeanDefinition());
 
         RequiresInjection bean = beanFactory.getBean("requiresInjection", RequiresInjection.class);
 
-        assertThat(bean.getInjectedBean().getMessage())
+        assertThat(bean.getInjectedField().getMessage())
                 .isEqualTo("allo!");
     }
 }
