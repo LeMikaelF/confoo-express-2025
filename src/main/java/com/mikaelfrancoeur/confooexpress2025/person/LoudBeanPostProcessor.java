@@ -17,7 +17,7 @@ public class LoudBeanPostProcessor implements BeanPostProcessor {
                     (MethodInterceptor) (obj, method, args, proxy) -> {
                         Object result = method.invoke(person, args);
                         if (method.getName().equals("greet") && result instanceof String string) {
-                            return (string).toUpperCase();
+                            return string.toUpperCase();
                         }
                         return result;
                     });
